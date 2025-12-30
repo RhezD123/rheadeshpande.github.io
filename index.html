@@ -1,17 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My GitHub Page</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      margin-top: 80px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Portfolio</title>
+<style>
+  body {
+    font-family: "Times New Roman", Times, serif;
+    margin:0; padding:0;
+    line-height:1.6;
+    background:#0f172a;
+    color:#f5f5f5;
+  }
+
+  header {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    background-color: #1f2937;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+  #waveCanvas {
+    position: absolute;
+    top:0; left:0;
+    width: 100%;
+    height: 100%;
+    z-index:1;
+  }
+
+  h1 {
+    position: relative;
+    z-index:2;
+    text-align:center;
+    padding-top:1.5rem;
+    margin:0;
+    font-size:2.8rem;
+  }
+
+  .header-description {
+    position: relative;
+    z-index:2;
+    text-align:center;
+    padding-top:4rem;
+    color:#d1d5db;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .contact {
+    text-align:center;
+    font-size:0.9rem;
+    margin:1rem auto;
+    color:#d1d5db;
+  }
+  .contact a {
+    color:#3b82f6;
+    margin:0 0.5rem;
+    text-decoration:none;
+  }
+  .contact a:hover { text-decoration:underline; }
+
+  section {
+    position: relative;
+    max-width:900px;
+    margin:1rem auto 2rem;
+    padding:1.5rem;
+    background-color: rgba(255,255,255,0.05);
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  section h2 {
+    margin-top:0;
+    border-left:4px solid #3b82f6;
+    padding-left:0.75rem;
+  }
+
+  ul { 
+    padding-left:2rem; 
+    list-style:disc; 
+  }
+
+  li {
+    margin-bottom:1rem;
+    font-size:1.05rem;
+  }
+
+  li a {
+    color:#3b82f6;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:0.5rem;
+  }
+
+  li a:hover { text-decoration:underline; }
+
+  .project-desc {
+    color:#d1d5db;
+    font-weight:normal;
+    display:inline;
+  }
+
+  footer {
+    text-align:center;
+    padding:2rem 1rem;
+    color:#6b7280;
+  }
+
+  /* Responsive: move description below link on small screens */
+  @media (max-width:600px) {
+    li { display:block; }
+  }
+</style>
 </head>
 <body>
-  <h1>Hello 👋</h1>
-  <p>This is my GitHub Pages site.</p>
+
+<header>
+  <canvas id="waveCanvas"></canvas>
+  <h1>Project Portfolio</h1>
+  <div class="header-description">
+    <p>Hello! I'm [Your Name], an engineering student interested in hardware design, PCB projects, embedded systems, and coding. Here’s a showcase of my projects.</p>
+  </div>
+</header>
+
+<!-- Contact section -->
+<div class="contact">
+  <a href="mailto:youremail@example.com">Email</a> |
+  <a href="https://github.com/YourUsername" target="_blank">GitHub</a> |
+  <a href="https://www.linkedin.com/in/YourProfile" target="_blank">LinkedIn</a>
+</div>
+
+<section id="hardware">
+  <h2>Hardware/PCB Projects</h2>
+  <ul>
+    <li><a href="Actuator.html">Actuator PCB</a><span class="project-desc">A custom PCB for precise motor control in embedded systems.</span></li>
+    <li><a href="DCDC.html">DAB DC-DC Converter</a><span class="project-desc">Dual Active Bridge converter for efficient power transfer.</span></li>
+    <li><a href="Flight_Computer.html">Flight Computer</a><span class="project-desc">Manages sensors, telemetry, and control logic for UAVs or rockets.</span></li>
+  </ul>
+</section>
+
+<section id="coding">
+  <h2>Coding/Hardware Projects</h2>
+  <ul>
+    <li><a href="SAR.html">SAR Tracking and RF Interface</a><span class="project-desc">Combines search-and-rescue tracking with RF communication.</span></li>
+    <li><a href="Verilog_Optical_Comms.html">Verilog Optical Link</a><span class="project-desc">High-speed optical communication system implemented in Verilog.</span></li>
+  </ul>
+</section>
+
+<footer>
+  © 2025 [Your Name] · Hosted on GitHub Pages
+</footer>
+
+<script>
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+let t=0;
+function drawWaves(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // axes
+  ctx.strokeStyle='rgba(255,255,255,0.2)';
+  ctx.lineWidth=1;
+  // horizontal (amplitude)
+  ctx.beginPath();
+  ctx.moveTo(0,canvas.height/2);
+  ctx.lineTo(canvas.width,canvas.height/2);
+  ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.font='14px Times New Roman';
+  ctx.fillText('Amplitude',10,20);
+
+  // vertical (time)
+  ctx.beginPath();
+  ctx.moveTo(50,0);
+  ctx.lineTo(50,canvas.height);
+  ctx.stroke();
+  ctx.fillText('Time',canvas.width-50,canvas.height/2+15);
+
+  // multiple colored waves
+  const waves=[
+    {amp:40, freq:0.03, color:'rgba(56,189,248,0.6)'},
+    {amp:25, freq:0.05, color:'rgba(16,185,129,0.6)'},
+    {amp:15, freq:0.08, color:'rgba(251,191,36,0.6)'}
+  ];
+
+  waves.forEach(w=>{
+    ctx.beginPath();
+    ctx.strokeStyle=w.color;
+    ctx.lineWidth=2;
+    for(let x=0;x<canvas.width;x++){
+      ctx.lineTo(x, canvas.height/2 + w.amp * Math.sin(x*w.freq + t));
+    }
+    ctx.stroke();
+  });
+
+  t+=0.05;
+  requestAnimationFrame(drawWaves);
+}
+
+drawWaves();
+window.addEventListener('resize',()=>{canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;});
+</script>
+
 </body>
 </html>
