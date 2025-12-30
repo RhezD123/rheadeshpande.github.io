@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verilog Optical Link</title>
+  <style>
+    body { font-family: Arial; max-width: 900px; margin: auto; padding: 2rem; line-height: 1.6; background:#f5f5f5; }
+    h1 { margin-top:0; }
+    a { color:#3b82f6; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    img { max-width:100%; margin:1rem 0; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <h1>Verilog Optical Link</h1>
+  <p>[Write a description of the Verilog Optical Link project here. Include HDL design, FPGA details, testing, and outcomes.]</p>
+
+  <h2>Images / Screenshots</h2>
+  <img src="images/verilog.png" alt="Verilog Optical Link schematic">
+
+  <p><a href="index.html">← Back to Portfolio</a></p>
+</body>
+</html>
